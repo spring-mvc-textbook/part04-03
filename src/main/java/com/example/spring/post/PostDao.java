@@ -19,7 +19,7 @@ public class PostDao {
     JdbcTemplate jdbcTemplate;
 
     @Autowired
-    private SqlSession session;
+    private SqlSession sqlSession;
 
     private static final String namespace = "postMapper";
 
@@ -28,7 +28,7 @@ public class PostDao {
         int result = -1;
 
         try {
-            result = session.insert(namespace + ".create", post);
+            result = sqlSession.insert(namespace + ".create", post);
         } catch (DataAccessException e) {
             logger.error("게시글 등록 오류 : {}", e.getMessage(), e);
         }
